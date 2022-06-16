@@ -829,7 +829,6 @@ public class AdminPanelFinder extends javax.swing.JPanel implements burp.IHttpLi
             if(thisStr.contains("{ext}")){
                 if(getExtension().length()>0){
                     thisStr=thisStr.replace("{ext}", getExtension());
-                    output.println(thisStr);
                     send_dict.add(thisStr);
                 }
             }
@@ -868,7 +867,6 @@ public class AdminPanelFinder extends javax.swing.JPanel implements burp.IHttpLi
         bruteForce_dict=new ArrayList<String>();
         resetFields();
         levelComboBox.setSelectedIndex(3); //Level:3
-        output.println("******1");
         updateDictListFromLevel();
         TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(ReqRespTable.getModel());
         ReqRespTable.setRowSorter(sorter);
@@ -1163,7 +1161,6 @@ public class AdminPanelFinder extends javax.swing.JPanel implements burp.IHttpLi
         bruteForce_dict=new ArrayList<>();
         int level=levelComboBox.getSelectedIndex()+1;
         for (int i = 1; i <= level; i++) {
-            output.println("Adding level"+i+".txt");
             try {
                 bruteForce_dict.addAll(Functions.ReadFile("level"+i+".txt"));
             } catch (Exception ex) {

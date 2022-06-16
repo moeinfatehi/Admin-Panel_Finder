@@ -34,9 +34,6 @@ public class HelpPanel extends javax.swing.JPanel {
         aboutTable.setValueAt(BurpExtender.getVersion(), 0, 1);
         //set project name
         aboutTable.getTableHeader().getColumnModel().getColumn(1).setHeaderValue(BurpExtender.getProjectName());
-        Calendar calendar = new GregorianCalendar();
-        int year = calendar.get(Calendar.YEAR);
-        aboutTable.setValueAt("© "+(year-1)+"-"+year+" Moein Fatehi", 5, 1);
         try {
             editorPane.setText(ReadFile("instruction"));
         } catch (IOException ex) {
@@ -118,12 +115,20 @@ public class HelpPanel extends javax.swing.JPanel {
                 {"Email", "moein.fatehi@gmail.com"},
                 {"Website", "moeinfatehi.ir"},
                 {"Twitter", "@MoeinFatehi"},
-                {"Copyright", "© 2015-2016 Moein Fatehi"}
+                {"Github", "https://github.com/moeinfatehi"}
             },
             new String [] {
                 "Project", "Input Fuzzer"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane8.setViewportView(aboutTable);
 
         jLabel11.setText("Short description");
